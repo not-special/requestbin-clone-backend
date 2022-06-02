@@ -1,4 +1,4 @@
-const { getBinByPath, createRequest } = require("../lib/db-query")
+const { getBinByPath, createRequest } = require("../lib/db_query")
 
 const getBinId = async (path) => {
   try {

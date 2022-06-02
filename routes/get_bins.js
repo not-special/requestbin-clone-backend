@@ -1,7 +1,7 @@
 const Router = require('express')
 const router = new Router()
 const middleware = require('../utils/middleware')
-const { getBinRequestsByPath } = require("../lib/db-query")
+const { getBinRequestsByPath } = require("../lib/db_query")
 const { getBinId, saveRequest, binJSON } = require("./shared")
 
 
