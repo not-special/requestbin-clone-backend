@@ -4,17 +4,10 @@ const app = express()
 const cors = require("cors");
 const bodyParser = require('body-parser')
 const middleware = require('./utils/middleware')
+const cors = require("cors")
 const PORT = process.env.PORT
 
-app.use(cors());
-//Second idea for solving CORS
-// app.use((req, res, next) => {
-//   res.setHeader('Access-Control-Allow-Origin', '*');
-// 	res.setHeader('Access-Control-Allow-Headers', '*');
-//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE');
-//   next();
-// });
-
+app.use(cors())
 app.use(bodyParser.json())
 app.use(middleware.requestLogger)
 
