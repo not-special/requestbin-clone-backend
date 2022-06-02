@@ -1,4 +1,5 @@
 const { getBinByPath, createRequest } = require("../lib/db_query")
+const mongo = require("../lib/mongo_conn")
 
 const getBinId = async (path) => {
   try {
@@ -17,6 +18,10 @@ const saveRequest = async (requestData) => {
   }
 }
 
+const savePayload = (id, binId, payload) => {
+  mongo.savePayload(id, binId, payload)
+}
+
 const binJSON = (binData, requests) => {
   obj = {}
   obj.binId = binData.binId
@@ -28,5 +33,6 @@ const binJSON = (binData, requests) => {
 module.exports = {
   saveRequest,
   getBinId,
+  savePayload,
   binJSON,
 }

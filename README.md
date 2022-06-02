@@ -6,7 +6,7 @@ Clone of the basic functionality at [v1.requestbin.net](https://v1.requestbin.ne
 * Install dependencies: `$ npm install`
 * Start: `$ npm start`
 
-# Database
+# Database - Postgres
 ## Local
 ### Create 
 1) `$ psql postgres`
@@ -28,6 +28,15 @@ Clone of the basic functionality at [v1.requestbin.net](https://v1.requestbin.ne
 2) `requestbin=# \i ./sql/teardown.sql`
 3) `requestbin=# \i ./sql/schema.sql`
 4) `requestbin=# \i ./sql/test_data.sql`
+
+# Database - Mongo
+## Local
+### Download 
+1) Follow [these](https://zellwk.com/blog/install-mongodb/) instructions to install Mongo locally
+
+### Run
+1) start mongo: `$ brew services run mongodb-community`
+2) stop mongo: `$ brew services stop mongodb-community`
 
 # VPS instructions
 * [full instructions](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-20-04)
