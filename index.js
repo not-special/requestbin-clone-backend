@@ -16,5 +16,6 @@ app.get('/api/test', (req, res) => {
 })
 
 app.post('/api/bins', require('./routes/bins'))
+app.get('/api/bins/:path', require('./routes/get_bins'))
 
 app.listen(PORT, () => console.log(`Running on port ${PORT}`))
