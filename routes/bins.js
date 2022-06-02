@@ -1,7 +1,8 @@
 const Router = require('express')
 const router = new Router()
 const randomstring = require("randomstring");
-const db = require("../lib/db-query")
+// const db = require("../lib/db-conn")
+const { createBin } = require("../lib/db-query")
 
 
 router.post('/api/bins', async (req, res) => {
@@ -9,7 +10,7 @@ router.post('/api/bins', async (req, res) => {
   //createbin at DB, if success, send response of object w { "path":"binURL" }
   let binPath
   try {
-    binPath = await db.createBin(path)
+    binPath = await createBin(path)
   } catch (error) {
     console.log(error)
   }
