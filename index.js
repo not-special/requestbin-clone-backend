@@ -1,9 +1,11 @@
 const express = require('express')
 const app = express()
+const bodyParser = require('body-parser')
 require('dotenv').config()
 const middleware = require('./utils/middleware')
 const PORT = process.env.PORT
 
+  app.use(bodyParser.json())
 app.use(middleware.requestLogger)
 
 app.get('/api/test', (req, res) => {
