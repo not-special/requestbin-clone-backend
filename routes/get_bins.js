@@ -21,10 +21,6 @@ router.get('/api/bins/:path', middleware.parseRequest, async (req, res) => {
     } catch (error) {
       console.log(error)
     }
-
-    //Here we need to merge the MongoDB payload
-    // maybe in utils/middleware??
-
     res.status(200).json(binJSON(requestData, result.rows))
   }
 })
