@@ -15,7 +15,7 @@ router.post('/api/bins', async (req, res) => {
     console.log(error)
   }
   
-  res.status(200).send(binPath.rows[0].path)
+  res.status(200).json({"path":binPath.rows[0].path})
 })
 
 module.exports = router;
