@@ -1,11 +1,13 @@
 const Router = require('express')
 const router = new Router()
 const middleware = require('../utils/middleware')
-const { getBinId, saveRequest } = require("./shared")
+const { getBinId, saveRequest, savePayload } = require("./shared")
 
 router.all('/api/bins/:path', middleware.parseRequest, async (req, res) => {
   const requestData = res.locals.requestData
   requestData.binId = await getBinId(requestData.binPath)
+  // requestData.id, requestData.binId, requestData.payload
+  await savePayload(requestData.id, requestData.binId, requestData.payload)
   await saveRequest(requestData)
   res.status(201).json({"path": requestData.binPath})
 })
