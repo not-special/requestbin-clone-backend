@@ -3,8 +3,10 @@ const app = express()
 const bodyParser = require('body-parser')
 require('dotenv').config()
 const middleware = require('./utils/middleware')
+const cors = require("cors")
 const PORT = process.env.PORT
 
+app.use(cors())
 app.use(bodyParser.json())
 app.use(middleware.requestLogger)
 
