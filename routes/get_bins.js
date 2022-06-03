@@ -3,7 +3,7 @@ const router = new Router()
 const middleware = require('../utils/middleware')
 const { getBinRequestsByPath } = require("../lib/db_query")
 const { getBinId, saveRequest, binJSON } = require("./shared")
-const { getPayload } = require("../lib/mongo_conn")
+const { getPayload } = require("../lib/mongo_query")
 
 
 router.get('/api/bins/:path', middleware.parseRequest, async (req, res) => {
@@ -14,7 +14,9 @@ router.get('/api/bins/:path', middleware.parseRequest, async (req, res) => {
   requestData.binId = await getBinId(requestData.binPath)
   
   if (inspect === undefined) {
-    await saveRequest(requestData)
+    console.log('requestData: ',requestData)
+    const result = await saveRequest(requestData)
+    await savePayload(result.id, requestData.binId, requestData.payload)
     res.status(201).json({"path": requestData.binPath})
   } else {
     try {

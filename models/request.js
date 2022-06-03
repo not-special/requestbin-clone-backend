@@ -13,7 +13,7 @@ mongoose.connect(url)
   })
 
   const requestSchema = new mongoose.Schema({
-    id: Number,
+    requestId: Number,
     binId: Number,
     payload: Object,
   })

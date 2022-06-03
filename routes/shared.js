@@ -1,5 +1,5 @@
 const { getBinByPath, createRequest } = require("../lib/db_query")
-const mongo = require("../lib/mongo_conn")
+const mongo = require("../lib/mongo_query")
 
 const getBinId = async (path) => {
   try {
@@ -12,7 +12,8 @@ const getBinId = async (path) => {
 
 const saveRequest = async (requestData) => {
   try {
-    createRequest(requestData)
+    const result = await createRequest(requestData)
+    return result.rows[0]
   } catch (error) {
     console.log(error)
   }
