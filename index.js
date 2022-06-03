@@ -10,6 +10,8 @@ app.use(cors())
 app.use(bodyParser.json())
 app.use(middleware.requestLogger)
 
+app.use(express.static('build'))
+
 app.get('/api/test', (req, res) => {
   res.send('Success')
 })
