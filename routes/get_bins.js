@@ -14,7 +14,6 @@ router.get('/api/bins/:path', middleware.parseRequest, async (req, res) => {
   requestData.binId = await getBinId(requestData.binPath)
   
   if (inspect === undefined) {
-    console.log('requestData: ',requestData)
     const result = await saveRequest(requestData)
     await savePayload(result.id, requestData.binId, requestData.payload)
     res.status(201).json({"path": requestData.binPath})
@@ -28,6 +27,11 @@ router.get('/api/bins/:path', middleware.parseRequest, async (req, res) => {
     // merge request data from Postgres w payload from Mongo
     let payload = await getPayload(requestData.binId)
     console.log("in get_bins", payload)
+    idToPayload = {}
+    payload.forEach(p => idToPayload[p.requestId] = p.payload)
+    result.rows.forEach(row => {
+      row.payload = idToPayload[String(row.id)]
+    })
     
     res.status(200).json(binJSON(requestData, result.rows))
   }
