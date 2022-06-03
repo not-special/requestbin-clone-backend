@@ -3,6 +3,7 @@ const router = new Router()
 const middleware = require('../utils/middleware')
 const { getBinRequestsByPath } = require("../lib/db_query")
 const { getBinId, saveRequest, binJSON } = require("./shared")
+const { getPayload } = require("../lib/mongo_conn")
 
 
 router.get('/api/bins/:path', middleware.parseRequest, async (req, res) => {
@@ -21,6 +22,11 @@ router.get('/api/bins/:path', middleware.parseRequest, async (req, res) => {
     } catch (error) {
       console.log(error)
     }
+    //Get payload data from MongoDB
+    // merge request data from Postgres w payload from Mongo
+    let payload = await getPayload(requestData.binId)
+    console.log("in get_bins", payload)
+    
     res.status(200).json(binJSON(requestData, result.rows))
   }
 })
